@@ -19,7 +19,7 @@ void  delete_all_list(book **hvost);
 int main(){
 	int  choice_1;
 	char year[5], title[21];
-	book *head = NULL;                                                     // óêàçàòåëü head íà íîëü
+	book *head = NULL;                                                     // Ã³ÃªÃ Ã§Ã Ã²Ã¥Ã«Ã¼ head Ã­Ã  Ã­Ã®Ã«Ã¼
 	while(1){
     	printf("1 -> Add a book v poryadke spadaniya.\n");                 
 		printf("2 -> Delete the book s hvosta spiska.\n");
@@ -65,7 +65,7 @@ int main(){
 	}
 }
 
-book *create_list(char year[], char title[]){                 // Ñîçäàåì ïåðâûé ýäåìåíò ñïèñêà 
+book *create_list(char year[], char title[]){                 // Ã‘Ã®Ã§Ã¤Ã Ã¥Ã¬ Ã¯Ã¥Ã°Ã¢Ã»Ã© Ã½Ã¤Ã¥Ã¬Ã¥Ã­Ã² Ã±Ã¯Ã¨Ã±ÃªÃ  
 	book *ress = (book *)malloc(sizeof(book));
 	strcpy(ress->year, year);                                       
 	strcpy(ress->title, title);
@@ -75,69 +75,69 @@ book *create_list(char year[], char title[]){                 // Ñîçäàåì ïåðâûé 
 
 book *add_element(book *head, char year[], char title[]){
     if (head == NULL){
-        head = create_list(year, title);                                 // åñëè óêàçàòåëü íà ãîëîâó ðàâåí 0, ñîçäàåì ïåðâûé ýëåìåíò ñïèêà 
+        head = create_list(year, title);                                 // Ã¥Ã±Ã«Ã¨ Ã³ÃªÃ Ã§Ã Ã²Ã¥Ã«Ã¼ Ã­Ã  Ã£Ã®Ã«Ã®Ã¢Ã³ Ã°Ã Ã¢Ã¥Ã­ 0, Ã±Ã®Ã§Ã¤Ã Ã¥Ã¬ Ã¯Ã¥Ã°Ã¢Ã»Ã© Ã½Ã«Ã¥Ã¬Ã¥Ã­Ã² Ã±Ã¯Ã¨ÃªÃ  
         return head;
     }
-    book *prev = NULL;                                                 // äîï óêàçàòåëü íà ïðîøëûé ýëåìåíò
+    book *prev = NULL;                                                 // Ã¤Ã®Ã¯ Ã³ÃªÃ Ã§Ã Ã²Ã¥Ã«Ã¼ Ã­Ã  Ã¯Ã°Ã®Ã¸Ã«Ã»Ã© Ã½Ã«Ã¥Ã¬Ã¥Ã­Ã²
     book *curr = head;                                                             
     while((curr != NULL) && (!my_cmp(title, year, curr->title, curr->year))){
-        prev = curr;                                                                  // ïîèñê ìåñòà âñòàâêè 
+        prev = curr;                                                                  // Ã¯Ã®Ã¨Ã±Ãª Ã¬Ã¥Ã±Ã²Ã  Ã¢Ã±Ã²Ã Ã¢ÃªÃ¨ 
         curr = curr->next;                                                           
     }
     book *new_elem = create_list(year, title);
-    if (!prev){                                                        // åñëè íóæíî âñòàâèòü íà ïåðâîå ìåñòî
+    if (!prev){                                                        // Ã¥Ã±Ã«Ã¨ Ã­Ã³Ã¦Ã­Ã® Ã¢Ã±Ã²Ã Ã¢Ã¨Ã²Ã¼ Ã­Ã  Ã¯Ã¥Ã°Ã¢Ã®Ã¥ Ã¬Ã¥Ã±Ã²Ã®
         new_elem->next = head;
         head = new_elem;
     }
 	else{
-        prev->next = new_elem;                                                           // âñòàâêà ìåæäó ýëåìåíòàìè 
+        prev->next = new_elem;                                                           // Ã¢Ã±Ã²Ã Ã¢ÃªÃ  Ã¬Ã¥Ã¦Ã¤Ã³ Ã½Ã«Ã¥Ã¬Ã¥Ã­Ã²Ã Ã¬Ã¨ 
         new_elem->next = curr;
     }
     return head;
 }
 
-int my_cmp(char *title1, char *year1, char *title2, char *year2){                              // ñðàâíåíèå äâóõ ýëåìåíòîâ 
+int my_cmp(char *title1, char *year1, char *title2, char *year2){                              // Ã±Ã°Ã Ã¢Ã­Ã¥Ã­Ã¨Ã¥ Ã¤Ã¢Ã³Ãµ Ã½Ã«Ã¥Ã¬Ã¥Ã­Ã²Ã®Ã¢ 
 	int i;
 	int max_len_year  = strlen(year1) >= strlen(year2) ? strlen(year1) : strlen(year2);
-    int max_len_title  = strlen(title1) >= strlen(title2) ? strlen(title1) : strlen(title2);     // íàõîäèì äëèíó íàçâàíèÿ êíèãè
+    int max_len_title  = strlen(title1) >= strlen(title2) ? strlen(title1) : strlen(title2);     // Ã­Ã ÃµÃ®Ã¤Ã¨Ã¬ Ã¤Ã«Ã¨Ã­Ã³ Ã­Ã Ã§Ã¢Ã Ã­Ã¨Ã¿ ÃªÃ­Ã¨Ã£Ã¨
     if (strlen(year1) != strlen(year2)){              
-        return (strlen(year1) > strlen(year2));                         // âîçâðàùàåì 0 èëè 1 â çàâèñèìîñòè îò êîãî, êàêîé ãîä áîëüøå 
+        return (strlen(year1) > strlen(year2));                         // Ã¢Ã®Ã§Ã¢Ã°Ã Ã¹Ã Ã¥Ã¬ 0 Ã¨Ã«Ã¨ 1 Ã¢ Ã§Ã Ã¢Ã¨Ã±Ã¨Ã¬Ã®Ã±Ã²Ã¨ Ã®Ã² ÃªÃ®Ã£Ã®, ÃªÃ ÃªÃ®Ã© Ã£Ã®Ã¤ Ã¡Ã®Ã«Ã¼Ã¸Ã¥ 
     }
     for (i = 0; i < max_len_year; ++i){
         if (year1[i] != year2[i]) {
-            return (*(year1+i) > *(year2+i));                            // âîçâðàùàåì 0 èëè 1 â çàâèñèìîñòè îò êîãî, êàêîé ãîä áîëüøå 
+            return (*(year1+i) > *(year2+i));                            // Ã¢Ã®Ã§Ã¢Ã°Ã Ã¹Ã Ã¥Ã¬ 0 Ã¨Ã«Ã¨ 1 Ã¢ Ã§Ã Ã¢Ã¨Ã±Ã¨Ã¬Ã®Ã±Ã²Ã¨ Ã®Ã² ÃªÃ®Ã£Ã®, ÃªÃ ÃªÃ®Ã© Ã£Ã®Ã¤ Ã¡Ã®Ã«Ã¼Ã¸Ã¥ 
         }
     }
     if (strlen(title1) != strlen(title2)){              
-        return (strlen(title1) < strlen(title2));                         // âîçâðàùàåì 0 èëè 1 â çàâèñèìîñòè îò êîãî, êàêîå íàçâàíèå äëèíåå
+        return (strlen(title1) < strlen(title2));                         // Ã¢Ã®Ã§Ã¢Ã°Ã Ã¹Ã Ã¥Ã¬ 0 Ã¨Ã«Ã¨ 1 Ã¢ Ã§Ã Ã¢Ã¨Ã±Ã¨Ã¬Ã®Ã±Ã²Ã¨ Ã®Ã² ÃªÃ®Ã£Ã®, ÃªÃ ÃªÃ®Ã¥ Ã­Ã Ã§Ã¢Ã Ã­Ã¨Ã¥ Ã¤Ã«Ã¨Ã­Ã¥Ã¥
     }
     for (i = 0; i < max_len_title; ++i){                                                           
         if (title1[i] != title2[i]){
-            return (*(title1+i) < *(title2+i));                       // âîçâðàùàåì 0 èëè 1 â çàâèñèìîñòè îò êîãî, êàêîé ñèìâîë íà  *(title+i) áîëüøå
+            return (*(title1+i) < *(title2+i));                       // Ã¢Ã®Ã§Ã¢Ã°Ã Ã¹Ã Ã¥Ã¬ 0 Ã¨Ã«Ã¨ 1 Ã¢ Ã§Ã Ã¢Ã¨Ã±Ã¨Ã¬Ã®Ã±Ã²Ã¨ Ã®Ã² ÃªÃ®Ã£Ã®, ÃªÃ ÃªÃ®Ã© Ã±Ã¨Ã¬Ã¢Ã®Ã« Ã­Ã   *(title+i) Ã¡Ã®Ã«Ã¼Ã¸Ã¥
         }
     }
     return 0;
 }
 
-void delete_hvost(book **hvost){                                     // óäàëÿåì ïîñëåäíèé ýëåìåíò ñïèñêà
+void delete_hvost(book **hvost){                                     // Ã³Ã¤Ã Ã«Ã¿Ã¥Ã¬ Ã¯Ã®Ã±Ã«Ã¥Ã¤Ã­Ã¨Ã© Ã½Ã«Ã¥Ã¬Ã¥Ã­Ã² Ã±Ã¯Ã¨Ã±ÃªÃ 
 	if(*hvost == NULL){ 
 		printf("Doesn`t exist.\n");                               
-		return;                                                      // ïðîâåðêà íà ñóùåñòâîâàíèÿ õî÷à á îäíîãî ýëåìåíòà 
+		return;                                                      // Ã¯Ã°Ã®Ã¢Ã¥Ã°ÃªÃ  Ã­Ã  Ã±Ã³Ã¹Ã¥Ã±Ã²Ã¢Ã®Ã¢Ã Ã­Ã¨Ã¿ ÃµÃ®Ã·Ã  Ã¡ Ã®Ã¤Ã­Ã®Ã£Ã® Ã½Ã«Ã¥Ã¬Ã¥Ã­Ã²Ã  
 	}
 	if((*hvost)->next == NULL){                                    
     	free(*hvost);
-    	*hvost = NULL;                                        // åñëè îí îäèí-îí õâîñò 
+    	*hvost = NULL;                                        // Ã¥Ã±Ã«Ã¨ Ã®Ã­ Ã®Ã¤Ã¨Ã­-Ã®Ã­ ÃµÃ¢Ã®Ã±Ã² 
     	return;
 	}
 	book *t = *hvost;
-	while (t->next->next != NULL){                                  // ïîèñê õâîñòà
+	while (t->next->next != NULL){                                  // Ã¯Ã®Ã¨Ã±Ãª ÃµÃ¢Ã®Ã±Ã²Ã 
 		t = t->next;
 	}
 	free(t->next);
 	t->next = NULL;
 }
 
-void print_predposled(book *pred){            // âûâîäèì ïðåäïîñëåäíèé ýëìåíò ñïèñêà 
+void print_predposled(book *pred){            // Ã¢Ã»Ã¢Ã®Ã¤Ã¨Ã¬ Ã¯Ã°Ã¥Ã¤Ã¯Ã®Ã±Ã«Ã¥Ã¤Ã­Ã¨Ã© Ã½Ã«Ã¬Ã¥Ã­Ã² Ã±Ã¯Ã¨Ã±ÃªÃ  
 	if(pred==NULL){
 		printf("Doesn`t exist.\n");
 		return;
@@ -146,23 +146,23 @@ void print_predposled(book *pred){            // âûâîäèì ïðåäïîñëåäíèé ýëìåíò ñï
 		printf("Doesn`t exist.\n");
 		return;
 	}                                                                                
-	while (pred->next->next!=NULL){             // èùåì ïðåäïîñëåäíèé ýëåìåíò  
+	while (pred->next->next!=NULL){             // Ã¨Ã¹Ã¥Ã¬ Ã¯Ã°Ã¥Ã¤Ã¯Ã®Ã±Ã«Ã¥Ã¤Ã­Ã¨Ã© Ã½Ã«Ã¥Ã¬Ã¥Ã­Ã²  
 		pred = pred->next;
 	}
 	printf("%s:%s\n", pred->year, pred->title);
 }
 
-void print_list(book *head){                                   // Âûâîä ïîëíîãî ñïèñêà
-    book *current = head;                                                            // ñòàâèì óêàçàòåëü íà ãîëîâó, è âåäåì åãî äî êîíöà ñïèñêà 
+void print_list(book *head){                                   // Ã‚Ã»Ã¢Ã®Ã¤ Ã¯Ã®Ã«Ã­Ã®Ã£Ã® Ã±Ã¯Ã¨Ã±ÃªÃ 
+    book *current = head;                                                            // Ã±Ã²Ã Ã¢Ã¨Ã¬ Ã³ÃªÃ Ã§Ã Ã²Ã¥Ã«Ã¼ Ã­Ã  Ã£Ã®Ã«Ã®Ã¢Ã³, Ã¨ Ã¢Ã¥Ã¤Ã¥Ã¬ Ã¥Ã£Ã® Ã¤Ã® ÃªÃ®Ã­Ã¶Ã  Ã±Ã¯Ã¨Ã±ÃªÃ  
     while (current != NULL){
     	printf("%s:%s\n",  current->year, current->title);        
         current = current->next;
     }
 }
 
-void delete_all_list(book **hvost){                                           // Óäàëåíèå öåëîãî ñïèñêà
-	while(*hvost != NULL){                                             // Ïîêà ñïèñîê  íå áóäåò ïóñò             
-    	book *temp = *hvost;                                                   // çàïèñ ýëåìåíò â òåìï, ïåðåõîäèì íà ñëåä ýëåìåíò, à òåìï î÷èùàåì                                 
+void delete_all_list(book **hvost){                                           // Ã“Ã¤Ã Ã«Ã¥Ã­Ã¨Ã¥ Ã¶Ã¥Ã«Ã®Ã£Ã® Ã±Ã¯Ã¨Ã±ÃªÃ 
+	while(*hvost != NULL){                                             // ÃÃ®ÃªÃ  Ã±Ã¯Ã¨Ã±Ã®Ãª  Ã­Ã¥ Ã¡Ã³Ã¤Ã¥Ã² Ã¯Ã³Ã±Ã²             
+    	book *temp = *hvost;                                                   // Ã§Ã Ã¯Ã¨Ã± Ã½Ã«Ã¥Ã¬Ã¥Ã­Ã² Ã¢ Ã²Ã¥Ã¬Ã¯, Ã¯Ã¥Ã°Ã¥ÃµÃ®Ã¤Ã¨Ã¬ Ã­Ã  Ã±Ã«Ã¥Ã¤ Ã½Ã«Ã¥Ã¬Ã¥Ã­Ã², Ã  Ã²Ã¥Ã¬Ã¯ Ã®Ã·Ã¨Ã¹Ã Ã¥Ã¬                                 
     	*hvost = (*hvost)->next;
     	free(temp);
 	}
